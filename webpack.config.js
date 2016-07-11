@@ -34,7 +34,7 @@ module.exports = env => {
     devtool: env.prod ? 'source-map' : 'eval-source-map',
     module: {
       loaders: [
-        {test: /\.js$/, loaders: ['babel'], exclude: /node_modules/},
+        {test: /\.js$/, loader: 'babel', query: { "presets": ["es2015", "stage-2", "react"] }, exclude: /node_modules/},
         {test: /\.jade$/, loader: 'jade'},
         {test: /\.css$/,   loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
         {test: /\.scss$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")},

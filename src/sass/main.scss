@@ -2,6 +2,8 @@ $pathToSprite : '../images/sprites.png';
 $pathToSpriteSVG : '../images/sprites.svg';
 $pathToFonts : '../fonts/';
 
+@import "fonts";
+@import "variables";
 //bootstrap
 // Core variables and mixins
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
@@ -59,3 +61,8 @@ $pathToFonts : '../fonts/';
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/popovers";
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+
+@import "icons";
+@import "mixins";
+@import "base";
+@import "game";
