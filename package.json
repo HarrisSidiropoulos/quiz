@@ -14,7 +14,8 @@
     "react-router": "3.0.0-alpha.1",
     "redux": "3.5.2",
     "redux-logger": "2.6.1",
-    "redux-thunk": "2.0.1"
+    "redux-thunk": "2.0.1",
+    "unique-random-array": "1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "6.0.3",
