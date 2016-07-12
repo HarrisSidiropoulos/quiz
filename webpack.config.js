@@ -13,19 +13,21 @@ module.exports = env => {
   const ifDev = value => specifyProp(!env.prod, value)
   const removeEmpty = array => array.filter(i => !!i)
   return webpackValidator({
-    entry: env.prod ? {
-      app: './js/index.js',
-      bootstrap: './sass/main.scss'
-    } : {
-      app: [
-        'webpack-hot-middleware/client?reload=true',
-        './js/index.js'
-      ],
-      bootstrap: [
-        'webpack-hot-middleware/client?reload=true',
-        './sass/main.scss'
-      ]
-    },
+    entry: env.prod ?
+      {
+        app: './js/index.js',
+        bootstrap: './sass/main.scss'
+      } : 
+      {
+        app: [
+          'webpack-hot-middleware/client?reload=true',
+          './js/index.js'
+        ],
+        bootstrap: [
+          'webpack-hot-middleware/client?reload=true',
+          './sass/main.scss'
+        ]
+      },
     output: {
       filename: env.prod ? 'bundle.[name].[chunkhash].js' : '[name].js',
       path: resolve(__dirname, env.prod ? 'dist/assets/' : 'dist'),

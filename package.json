@@ -71,6 +71,12 @@
       "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
     }
   },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "webpack --env.prod -p",
@@ -78,7 +84,9 @@
     "start": "node server",
     "dev": "http-server dist",
     "test": "karma start",
+    "test:store": "mocha src/js/store/store.test.js  --compilers js:babel-register",
     "watch:test": "npm test -- --auto-watch --no-single-run",
+    "watch:test:store": "npm run test:store -- --watch",
     "check-coverage": "istanbul check-coverage --statements 11 --branches 0 --functions 0 --lines 12",
     "validate": "npm-run-all --parallel lint build test --serial check-coverage",
     "lint": "eslint .",

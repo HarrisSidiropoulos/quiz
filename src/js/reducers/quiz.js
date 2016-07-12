@@ -6,12 +6,13 @@ const totalAnswers = QUIZ_DATA.questions.reduce((prev, next)=> {
   return prev + next.answers.length
 }, 0)
 
-const defaultQuestion = {
+export const defaultQuestion = {
   question: uniqueRandomArray(QUIZ_DATA.questions)(),
   totalAnswers: totalAnswers,
   currentQuestion: 1,
   totalQuestions: QUIZ_DATA.questions.length,
-  isQuizCompleted: QUIZ_DATA.questions.length==0
+  isQuizCompleted: QUIZ_DATA.questions.length==0,
+  score: 0
 }
 
 export default function Quiz(state = defaultQuestion, action) {
