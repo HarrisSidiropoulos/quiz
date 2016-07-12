@@ -22,7 +22,7 @@ export default function Quiz(state = defaultQuestion, action) {
         ...state,
         currentQuestion: state.currentQuestion + 1,
         question: uniqueRandomArray(QUIZ_DATA.questions)(),
-        isQuizCompleted: QUIZ_DATA.questions.length==0
+        isQuizCompleted: QUIZ_DATA.questions.length<=state.currentQuestion + 1
       };
       default:
         return state
