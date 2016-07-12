@@ -15,7 +15,8 @@ const Quiz = ()=> {
         <header>
           <div className="col-md-12">
             <div className="score">
-              <span className="score-name">ΒΑΘΜΟΛΟΓΙΑ&nbsp;&nbsp;</span>
+              <span className="score-name">ΒΑΘΜΟΛΟΓΙΑ</span>
+              <span>&nbsp;&nbsp;</span>
               <span className="score-value">0/35</span>
             </div>
           </div>
@@ -24,13 +25,16 @@ const Quiz = ()=> {
           <div className="question-container active">
             <div className="left-panel">
               <h4 className="question-heading">
-                <span className="question-name">ΕΡΩΤΗΣΗ</span>
+                <span className="question-name">ΕΡΩΤΗΣΗ</span>&nbsp;
                 <span className="question-value">( 1 / 7 )</span>
               </h4>
               <div className="question">Ποιό χαρακτηριστικό καθορίζει την κοινωνικοπολιτισμική πρακτική των πανηγυριών;</div>
               <ul className="answers">
                 <li>
                   <a className="btn">Α. Μουσική</a>
+                </li>
+                <li>
+                  <a className="btn">Β. Χόρος</a>
                 </li>
                 <li>
                   <a className="btn">Γ. Παρέα</a>
