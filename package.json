@@ -70,9 +70,13 @@
     "webpack-validator": "2.2.0",
     "webpack-recompilation-simulator": "1.3.0"
   },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "config": {
     "ghooks": {
-      "pre-commit": "opt --in pre-commit --exec \"npm run validate\""
+      "pre-commit": "npm run test:store"
     }
   },
   "babel": {
