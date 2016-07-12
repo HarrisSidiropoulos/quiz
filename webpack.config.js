@@ -34,19 +34,22 @@ module.exports = env => {
     context: resolve(__dirname, 'src'),
     devtool: env.prod ? 'source-map' : 'eval-source-map',
     module: {
-      loaders: [
-        {test: /\.js$/, loader: 'babel', query: { "presets": ["es2015", "stage-2", "react"] }, exclude: /node_modules/},
+      loaders: removeEmpty([
+        ifDev({test: /\.js$/, loader: 'babel', query: { "presets": ["es2015", "stage-2", "react", "react-hmre"] }, exclude: /node_modules/}),
+        ifProd({test: /\.js$/, loader: 'babel', query: { "presets": ["es2015", "stage-2", "react"] }, exclude: /node_modules/}),
         {test: /\.jade$/, loader: 'jade'},
-        {test: /\.css$/,   loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
-        {test: /\.scss$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")},
+        ifDev({test: /\.css$/,   loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]'}),
+        ifDev({test: /\.scss$/,  loaders: ["style", "css", "sass?sourceMap"]}),
+        ifProd({test: /\.css$/,   loader: ExtractTextPlugin.extract("style-loader", "css-loader")}),
+        ifProd({test: /\.scss$/,  loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")}),
         {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff"},
         {test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"},
         {test: /\.(png|gif|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
-      ],
+      ]),
     },
     recordsPath: resolve(__dirname, './webpack-records.json'),
     plugins: removeEmpty([
-      new ExtractTextPlugin('bundle.[name]-[hash].min.css'),
+      ifProd(new ExtractTextPlugin('bundle.[name]-[hash].min.css')),
       new HtmlWebpackPlugin({
         filename: env.prod ? '../index.html' : 'index.html',
         favicon: './images/favicon.png',
@@ -54,7 +57,9 @@ module.exports = env => {
         NODE_ENV: env.prod ? 'production' : 'development',
         inject: env.prod ? false : true
       }),
+      ifDev(new webpack.optimize.OccurrenceOrderPlugin()),
       ifDev(new webpack.HotModuleReplacementPlugin()),
+      ifDev(new webpack.NoErrorsPlugin()),
       ifDev(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')})),
       ifProd(new OfflinePlugin()),
     ]),
