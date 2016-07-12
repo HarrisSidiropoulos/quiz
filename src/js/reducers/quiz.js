@@ -9,7 +9,7 @@ const totalAnswers = QUIZ_DATA.questions.reduce((prev, next)=> {
 const defaultQuestion = {
   question: uniqueRandomArray(QUIZ_DATA.questions)(),
   totalAnswers: totalAnswers,
-  currentQuestion: 0,
+  currentQuestion: 1,
   totalQuestions: QUIZ_DATA.questions.length,
   isQuizCompleted: QUIZ_DATA.questions.length==0
 }
