@@ -13,20 +13,22 @@ const images = [
 
 class Question extends Component {
     render() {
-      const {question} = this.props;
+      const {question, totalQuestions, currentQuestion} = this.props;
       const img = parseInt(question.image.replace('Q', ''), 10) - 1;
       return (
         <div className="question-container active">
           <div className="left-panel">
             <h4 className="question-heading">
               <span className="question-name">ΕΡΩΤΗΣΗ</span>&nbsp;
-              <span className="question-value">( 1 / 7 )</span>
+              <span className="question-value">( {currentQuestion} / {totalQuestions} )</span>
             </h4>
             <div className="question">{question.question}</div>
             <ul className="answers">
               {
                 question.answers.map(({description, label}, index)=> (
-                  <li key={index}><a className="btn">{label}</a></li>
+                  <li key={index}>
+                    <a className="btn">{label}</a>
+                  </li>
                 ))
               }
             </ul>
@@ -43,6 +45,9 @@ class Question extends Component {
 
 Question.propTypes = {
   question: PropTypes.object.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
+  totalAnswers: PropTypes.number.isRequired,
+  totalQuestions: PropTypes.number.isRequired,
   isQuizCompleted: PropTypes.bool.isRequired
 };
 
