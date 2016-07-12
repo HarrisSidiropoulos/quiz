@@ -1,3 +1,4 @@
+const path = require('path')
 const {resolve} = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -27,8 +28,8 @@ module.exports = env => {
     },
     output: {
       filename: env.prod ? 'bundle.[name].[chunkhash].js' : '[name].js',
-      path: resolve(__dirname, 'dist/assets/'),
-      pathinfo: !env.prod,
+      path: resolve(__dirname, env.prod ? 'dist/assets/' : 'dist'),
+      pathinfo: !env.prod
     },
     context: resolve(__dirname, 'src'),
     devtool: env.prod ? 'source-map' : 'eval-source-map',
@@ -54,6 +55,7 @@ module.exports = env => {
         inject: env.prod ? false : true
       }),
       ifDev(new webpack.HotModuleReplacementPlugin()),
+      ifDev(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')})),
       ifProd(new OfflinePlugin()),
     ]),
   })
