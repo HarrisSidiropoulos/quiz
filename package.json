@@ -1,5 +1,9 @@
 {
-  "private": true,
+  "name": "Quiz",
+  "version": "1.0.0",
+  "description": "Quiz for Music Museum of Krete",
+  "author": "Harris Sidiropoulos",
+  "license": "MIT",
   "dependencies": {
     "bootstrap-sass": "3.3.6",
     "isomorphic-fetch": "2.2.1",
