@@ -60,7 +60,7 @@ export default function Quiz(state = defaultQuestion, action) {
     case HIDE_ANSWER:
       return {
         ...state,
-        showAnswer: action.show
+        showAnswer: !action.hide
       }
 
     default:

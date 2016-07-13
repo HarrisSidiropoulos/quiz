@@ -21,10 +21,6 @@ class Question extends Component {
         dispatch, question, totalQuestions, currentQuestion,
         answers, image, showAnswer, currentAnswer
       } = this.props;
-      const isAnswerCorrect = currentAnswer>=0 && answers[currentAnswer]["is-correct"];
-      const answerDialogBtnLabel = isAnswerCorrect ? QUIZ_DATA["next-question-button-label"] : QUIZ_DATA["error-button-label"];
-      const answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
-      const answerDialogType = isAnswerCorrect ? "success" : "danger";
 
       const img = parseInt(image.replace('Q', ''), 10) - 1;
       const _answers = answers.map((item, index)=> {
@@ -59,13 +55,7 @@ class Question extends Component {
               <img src={images[img]} alt={img} width="560" height="555" />
             </div>
           </div>
-          <AnswerDialog
-            show={showAnswer}
-            type={answerDialogType}
-            description={answerDialogDescription}
-            btnLabel={answerDialogBtnLabel}
-            hideModal={()=> isAnswerCorrect ? dispatch(getNextQuestion()) : dispatch(hideAnswer(false))}
-            />
+          <AnswerDialog />
         </div>
       );
     }
