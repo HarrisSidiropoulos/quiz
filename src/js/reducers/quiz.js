@@ -20,6 +20,10 @@ export const defaultQuestion = {
   isQuizCompleted: QUIZ_DATA.questions.length==0,
   score: 0
 }
+const calculateScore = (answers, score)=> {
+  let filteredAnswers = answers.filter(({answered}) => answered)
+  return score + (filteredAnswers.length>0 ? answers.length - filteredAnswers.length + 1 : 0)
+}
 
 export default function Quiz(state = defaultQuestion, action) {
   switch (action.type) {
@@ -30,7 +34,6 @@ export default function Quiz(state = defaultQuestion, action) {
         state.answers.forEach((item) => item.answered = null)
         shuffle(QUIZ_DATA.questions);
       }
-      let filteredAnswers = state.answers.filter(({answered}) => answered)
       return {
         ...state,
         showAnswer: false,
@@ -39,18 +42,19 @@ export default function Quiz(state = defaultQuestion, action) {
         question:QUIZ_DATA.questions[state.currentQuestion].question,
         answers:QUIZ_DATA.questions[state.currentQuestion].answers,
         image:QUIZ_DATA.questions[state.currentQuestion].image,
-        score: state.score + (filteredAnswers.length>0 ? state.answers.length - filteredAnswers.length + 1 : 0),
         isQuizCompleted: QUIZ_DATA.questions.length<=state.currentQuestion + 1
       };
 
     case CHECK_ANSWER:
+      let answers = QUIZ_DATA.questions[state.currentQuestion-1].answers.map((item, index)=> (
+        index===action.answer ? {...item, answered: true} : state.answers[index]
+      ))
       return {
         ...state,
         showAnswer: true,
         currentAnswer: action.answer,
-        answers:QUIZ_DATA.questions[state.currentQuestion-1].answers.map((item, index)=> (
-          index===action.answer ? {...item, answered: true} : state.answers[index]
-        ))
+        answers: answers,
+        score: answers[action.answer]['is-correct'] ? calculateScore(answers, state.score) : state.score
       }
 
     case HIDE_ANSWER:

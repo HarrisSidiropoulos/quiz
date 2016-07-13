@@ -37,7 +37,7 @@ describe('Store', () => {
         }
       })
       it(`should score be equal ${totalAnswers}`, () => {
-        const score = store.getState().quiz.score + store.getState().quiz.answers.length;
+        const score = store.getState().quiz.score;
         expect(score).to.be.equal(totalAnswers);
       });
       it('should be completed', () => {
