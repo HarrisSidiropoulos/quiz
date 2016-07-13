@@ -19,6 +19,7 @@
     "redux": "3.5.2",
     "redux-logger": "2.6.1",
     "redux-thunk": "2.0.1",
+    "shuffle-array": "1.0.0",
     "unique-random-array": "1.0.0"
   },
   "devDependencies": {
