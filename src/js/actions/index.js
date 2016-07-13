@@ -1,7 +1,11 @@
 export const NEXT_QUESTION = 'NEXT_QUESTION';
-export const IS_ANSWER_CORRECT = 'IS_ANSWER_CORRECT';
+export const CHECK_ANSWER = 'CHECK_ANSWER';
 
-export const getNextQuestion = (score)=> ({
-  type: NEXT_QUESTION,
-  score
+export const getNextQuestion = ()=> ({
+  type: NEXT_QUESTION
+});
+
+export const checkAnswer = (answer)=> ({
+  type: CHECK_ANSWER,
+  answer
 });
