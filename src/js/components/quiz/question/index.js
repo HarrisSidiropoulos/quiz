@@ -19,6 +19,7 @@ class Question extends Component {
       const {dispatch, question, totalQuestions, currentQuestion, answers, image} = this.props;
       const img = parseInt(image.replace('Q', ''), 10) - 1;
       const _answers = answers.map((item, index)=> {
+        item.text = QUIZ_DATA.letters[index].toUpperCase() + '. ' +item.label;
         if (item.answered && item["is-correct"]) {
           return {...item, classes: 'btn success disabled'}
         } else if (item.answered) {
@@ -36,9 +37,9 @@ class Question extends Component {
             <div className="question">{question}</div>
             <ul className="answers">
               {
-                _answers.map(({description, label, classes}, index)=> (
+                _answers.map(({description, text, classes}, index)=> (
                   <li key={index}>
-                    <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{label}</a>
+                    <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
                   </li>
                 ))
               }
