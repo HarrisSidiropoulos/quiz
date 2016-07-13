@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
-import {checkAnswer, getNextQuestion} from '../../../actions'
+import {checkAnswer, getNextQuestion, showAnswer} from '../../../actions'
 import QUIZ_DATA from '../../../data'
 import acc from '../../../utils/acc'
 

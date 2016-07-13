@@ -1,4 +1,4 @@
-import {NEXT_QUESTION, CHECK_ANSWER} from '../actions'
+import {NEXT_QUESTION, CHECK_ANSWER, SHOW_ANSWER} from '../actions'
 import QUIZ_DATA from '../data'
 import shuffle from 'shuffle-array'
 
@@ -13,6 +13,7 @@ export const defaultQuestion = {
   answers:QUIZ_DATA.questions[0].answers,
   image: QUIZ_DATA.questions[0].image,
   totalAnswers: totalAnswers,
+  showAnswer: false,
   currentQuestion: 1,
   currentAnswer: -1,
   totalQuestions: QUIZ_DATA.questions.length,
@@ -31,6 +32,7 @@ export default function Quiz(state = defaultQuestion, action) {
       let filteredAnswers = state.answers.filter(({answered}) => answered)
       return {
         ...state,
+        showAnswer: false,
         currentAnswer: -1,
         currentQuestion: state.currentQuestion + 1,
         question:QUIZ_DATA.questions[state.currentQuestion].question,
@@ -49,6 +51,12 @@ export default function Quiz(state = defaultQuestion, action) {
         ))
       }
 
+    case SHOW_ANSWER:
+      return {
+        ...state,
+        showAnswer: action.show
+      }
+      
     default:
       return state
   }

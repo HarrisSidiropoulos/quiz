@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import configureStore from './configureStore'
 import {defaultQuestion} from '../reducers/quiz'
-import {NEXT_QUESTION, getNextQuestion, checkAnswer} from '../actions'
+import {NEXT_QUESTION, getNextQuestion, CHECK_ANSWER, checkAnswer, SHOW_ANSWER, showAnswer} from '../actions'
 
 describe('Store', () => {
   let store = configureStore();
@@ -18,8 +18,8 @@ describe('Store', () => {
     it('should have defaultQuestion as default value', () => {
       expect(store.getState().quiz).to.be.equal(defaultQuestion)
     });
-    it('should have keys: question, totalAnswers, currentQuestion, totalQuestions, isQuizCompleted, score, answers, image currentAnswer', () => {
-      expect(store.getState().quiz).to.have.all.keys('question', 'totalAnswers', 'currentQuestion', 'totalQuestions', 'isQuizCompleted', 'score', 'answers', 'image', 'currentAnswer')
+    it('should have keys: question, totalAnswers, currentQuestion, totalQuestions, isQuizCompleted, score, answers, image currentAnswer showAnswer', () => {
+      expect(store.getState().quiz).to.have.all.keys('question', 'totalAnswers', 'currentQuestion', 'totalQuestions', 'isQuizCompleted', 'score', 'answers', 'image', 'currentAnswer', 'showAnswer')
     });
     describe(`Quiz reducer action ${NEXT_QUESTION}`, () => {
 
