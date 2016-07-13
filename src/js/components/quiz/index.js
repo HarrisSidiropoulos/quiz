@@ -15,7 +15,7 @@ class Quiz extends Component {
               <div className="score">
                 <span className="score-name">{acc(QUIZ_DATA['score-label']).toUpperCase()}</span>
                 <span>&nbsp;&nbsp;</span>
-                <span className="score-value">{score}/{totalAnswers}</span>
+                <span className="score-value">{score} / {totalAnswers}</span>
               </div>
             </div>
           </header>

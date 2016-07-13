@@ -14,6 +14,7 @@ export const defaultQuestion = {
   image: QUIZ_DATA.questions[0].image,
   totalAnswers: totalAnswers,
   currentQuestion: 1,
+  currentAnswer: -1,
   totalQuestions: QUIZ_DATA.questions.length,
   isQuizCompleted: QUIZ_DATA.questions.length==0,
   score: 0
@@ -30,6 +31,7 @@ export default function Quiz(state = defaultQuestion, action) {
       let filteredAnswers = state.answers.filter(({answered}) => answered)
       return {
         ...state,
+        currentAnswer: -1,
         currentQuestion: state.currentQuestion + 1,
         question:QUIZ_DATA.questions[state.currentQuestion].question,
         answers:QUIZ_DATA.questions[state.currentQuestion].answers,
@@ -41,6 +43,7 @@ export default function Quiz(state = defaultQuestion, action) {
     case CHECK_ANSWER:
       return {
         ...state,
+        currentAnswer: action.answer,
         answers:QUIZ_DATA.questions[state.currentQuestion-1].answers.map((item, index)=> (
           index===action.answer ? {...item, answered: true} : state.answers[index]
         ))
