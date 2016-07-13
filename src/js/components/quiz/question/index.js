@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
-import {checkAnswer, getNextQuestion, showAnswer} from '../../../actions'
+import {checkAnswer, getNextQuestion, hideAnswer} from '../../../actions'
 import QUIZ_DATA from '../../../data'
 import acc from '../../../utils/acc'
+import AnswerDialog from './answer-dialog'
 
 const images = [
   require('./images/Q1.jpg'),
@@ -16,7 +17,15 @@ const images = [
 
 class Question extends Component {
     render() {
-      const {dispatch, question, totalQuestions, currentQuestion, answers, image} = this.props;
+      const {
+        dispatch, question, totalQuestions, currentQuestion,
+        answers, image, showAnswer, currentAnswer
+      } = this.props;
+      const isAnswerCorrect = currentAnswer>=0 && answers[currentAnswer]["is-correct"];
+      const answerDialogBtnLabel = isAnswerCorrect ? QUIZ_DATA["next-question-button-label"] : QUIZ_DATA["error-button-label"];
+      const answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
+      const answerDialogType = isAnswerCorrect ? "success" : "danger";
+
       const img = parseInt(image.replace('Q', ''), 10) - 1;
       const _answers = answers.map((item, index)=> {
         item.text = QUIZ_DATA.letters[index].toUpperCase() + '. ' +item.label;
@@ -50,6 +59,13 @@ class Question extends Component {
               <img src={images[img]} alt={img} width="560" height="555" />
             </div>
           </div>
+          <AnswerDialog
+            show={showAnswer}
+            type={answerDialogType}
+            description={answerDialogDescription}
+            btnLabel={answerDialogBtnLabel}
+            hideModal={()=> isAnswerCorrect ? dispatch(getNextQuestion()) : dispatch(hideAnswer(false))}
+            />
         </div>
       );
     }
@@ -62,6 +78,7 @@ Question.propTypes = {
   totalAnswers: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired,
   isQuizCompleted: PropTypes.bool.isRequired,
+  showAnswer: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

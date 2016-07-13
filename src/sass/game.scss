@@ -236,9 +236,29 @@ header {
 }
 .modal-dialog {
   max-width: 500px;
+  // margin-top: 240px;
+  // @media (max-width: $screen-md-max) {
+  //   margin-top: 200px;
+  // }
 }
 .modal-header {
   text-align: left;
+  .close {
+    margin-top: -2px;
+    background: transparent;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    -webkit-appearance: none;
+    &:hover, &:focus {
+      opacity: .7;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 .modal-header, .modal-footer, .modal-body {
   border: none;
