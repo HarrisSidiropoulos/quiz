@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
-import QUIZ_DATA from '../../data'
-import acc from '../../utils/acc'
+import QUIZ_DATA from 'data'
+import acc from 'utils/acc'
 
 const Home = ()=> (
   <div className="container">
