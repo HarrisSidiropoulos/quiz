@@ -17,7 +17,7 @@ module.exports = env => {
       {
         app: './js/index.js',
         bootstrap: './sass/main.scss'
-      } : 
+      } :
       {
         app: [
           'webpack-hot-middleware/client?reload=true',
@@ -31,7 +31,8 @@ module.exports = env => {
     output: {
       filename: env.prod ? 'bundle.[name].[chunkhash].js' : '[name].js',
       path: resolve(__dirname, env.prod ? 'dist/assets/' : 'dist'),
-      pathinfo: !env.prod
+      pathinfo: !env.prod,
+      publicPath: env.prod ? '/assets/' : ''
     },
     context: resolve(__dirname, 'src'),
     devtool: env.prod ? 'source-map' : 'eval-source-map',
