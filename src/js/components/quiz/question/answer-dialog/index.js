@@ -22,8 +22,7 @@ class AnswerDialog extends Component {
     return (
       <Modal show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
         <Modal.Header closeButton={!isAnswerCorrect} />
-        <Modal.Body dangerouslySetInnerHTML={{__html:answerDialogDescription}}>
-        </Modal.Body>
+        <Modal.Body dangerouslySetInnerHTML={{__html:answerDialogDescription}} />
         <Modal.Footer>
           <Button bsStyle={answerDialogType} onClick={()=>this.hideModal()}>{answerDialogBtnLabel}</Button>
         </Modal.Footer>
