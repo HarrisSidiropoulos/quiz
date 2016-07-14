@@ -56,7 +56,7 @@ class Question extends Component {
             </div>
           </div>
           <div className={`current-score ${showAnswer && isAnswerCorrect ? 'visible' : 'hidden'}`}>+{currentQuestionScore}</div>
-          <AnswerDialog />
+          <AnswerDialog {...this.props}/>
         </div>
       );
     }

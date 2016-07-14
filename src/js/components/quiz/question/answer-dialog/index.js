@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux'
 import {getNextQuestion, hideAnswer} from '../../../../actions'
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
@@ -40,5 +39,4 @@ AnswerDialog.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ quiz } ) => quiz;
-export default connect(mapStateToProps)(AnswerDialog);
+export default AnswerDialog;
