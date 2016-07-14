@@ -16,12 +16,12 @@ class AnswerDialog extends Component {
   }
   render() {
     const {
-      showAnswer, answerDialogBtnLabel,answerDialogDescription, answerDialogType
+      isAnswerCorrect, showAnswer, answerDialogBtnLabel,answerDialogDescription, answerDialogType
     } = this.props;
 
     return (
       <Modal show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
-        <Modal.Header closeButton />
+        <Modal.Header closeButton={!isAnswerCorrect} />
         <Modal.Body dangerouslySetInnerHTML={{__html:answerDialogDescription}}>
         </Modal.Body>
         <Modal.Footer>
