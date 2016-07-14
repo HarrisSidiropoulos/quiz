@@ -22,11 +22,12 @@ export const defaultQuestion = {
   answerDialogDescription: '',
   answerDialogType: 'danger',
   answerDialogBtnLabel: '',
+  currentQuestionScore: 0,
   score: 0
 }
-const calculateScore = (answers, score)=> {
+const calculateScore = (answers)=> {
   let filteredAnswers = answers.filter(({answered}) => answered)
-  return score + (filteredAnswers.length>0 ? answers.length - filteredAnswers.length + 1 : 0)
+  return (filteredAnswers.length>0 ? answers.length - filteredAnswers.length + 1 : 0)
 }
 const getDialogValuesObject = (answers, isAnswerCorrect, currentAnswer, isQuizCompleted, score)=> {
   const quizCompletedMessage = QUIZ_DATA['end-game-message'].replace('{value}', `${score} /${totalAnswers}`);
@@ -70,15 +71,16 @@ export default function Quiz(state = defaultQuestion, action) {
         index===action.answer ? {...item, answered: true} : state.answers[index]
       ))
       const isAnswerCorrect = typeof answers[action.answer]['is-correct'] !== 'undefined'
-      const score = isAnswerCorrect ? calculateScore(answers, state.score) : state.score
+      const score = isAnswerCorrect ? calculateScore(answers) : 0
       return {
         ...state,
         showAnswer: true,
         currentAnswer: action.answer,
         isAnswerCorrect: isAnswerCorrect,
         answers: answers,
-        score: score,
-        ...getDialogValuesObject(answers, isAnswerCorrect, action.answer, state.isQuizCompleted, score)
+        score: state.score + score,
+        currentQuestionScore: score,
+        ...getDialogValuesObject(answers, isAnswerCorrect, action.answer, state.isQuizCompleted, state.score + score)
       }
 
     case HIDE_ANSWER:

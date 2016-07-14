@@ -20,7 +20,7 @@ class AnswerDialog extends Component {
     } = this.props;
 
     return (
-      <Modal show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
+      <Modal className={isAnswerCorrect && 'success'} show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
         <Modal.Header closeButton={!isAnswerCorrect} />
         <Modal.Body dangerouslySetInnerHTML={{__html:answerDialogDescription}} />
         <Modal.Footer>

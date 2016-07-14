@@ -18,8 +18,8 @@ const images = [
 class Question extends Component {
     render() {
       const {
-        dispatch, question, totalQuestions, currentQuestion,
-        answers, image, showAnswer, currentAnswer
+        dispatch, question, totalQuestions, currentQuestion, currentQuestionScore,
+        answers, image, showAnswer, isAnswerCorrect, currentAnswer
       } = this.props;
 
       const img = parseInt(image.replace('Q', ''), 10) - 1;
@@ -55,6 +55,7 @@ class Question extends Component {
               <img src={images[img]} alt={img} width="560" height="555" />
             </div>
           </div>
+          <div className={`current-score ${showAnswer && isAnswerCorrect ? 'visible' : 'hidden'}`}>+{currentQuestionScore}</div>
           <AnswerDialog />
         </div>
       );
@@ -69,6 +70,8 @@ Question.propTypes = {
   totalQuestions: PropTypes.number.isRequired,
   isQuizCompleted: PropTypes.bool.isRequired,
   showAnswer: PropTypes.bool.isRequired,
+  isAnswerCorrect: PropTypes.bool.isRequired,
+  currentQuestionScore: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

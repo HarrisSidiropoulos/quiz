@@ -260,6 +260,11 @@ header {
     }
   }
 }
+.modal.success.fade.in, .success.fade.in .modal-dialog {
+  transition-delay: 1s !important;
+  -moz-transition-delay: 1s !important;
+  -webkit-transition-delay: 1s !important;
+}
 .modal-header, .modal-footer, .modal-body {
   border: none;
   text-align: center;
@@ -295,5 +300,40 @@ header {
 .btn-danger {
   &.active.focus, &.active:focus, &.focus, &:active.focus, &:active:focus, &:focus {
     outline: 5px auto darken($brand-danger, 20%);
+  }
+}
+.current-score {
+  position: absolute;
+  z-index: 1050;
+  top: 43%;
+  left: 47%;
+  color: $brand-primary;
+  //text-shadow: 1px 1px $gray;
+  font-size: 100px;
+  opacity: 1;
+  transform: translate(-50%, -50%), scale(0,0);
+  pointer-events: none;
+  &.hidden {
+    opacity: 0;
+  }
+  &.visible {
+    display: block;
+    -webkit-animation: zoomAndFadeOut 1s ease-in-out;
+    animation: zoomAndFadeOut 1s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+@-webkit-keyframes zoomAndFadeOut {
+  0% {
+    transform: scale(0,0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(3,3);
+    opacity: .7;
+  }
+  100% {
+    transform: scale(1.5,1.5);
+    opacity: 0;
   }
 }
