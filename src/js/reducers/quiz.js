@@ -2,7 +2,7 @@ import {NEXT_QUESTION, CHECK_ANSWER, HIDE_ANSWER} from '../actions'
 import QUIZ_DATA from '../data'
 import shuffle from 'shuffle-array'
 
-const totalAnswers = QUIZ_DATA.questions.reduce((prev, next)=> {
+export const totalAnswers = QUIZ_DATA.questions.reduce((prev, next)=> {
   return prev + next.answers.length
 }, 0)
 
@@ -60,7 +60,7 @@ export default function Quiz(state = defaultQuestion, action) {
     case HIDE_ANSWER:
       return {
         ...state,
-        showAnswer: !action.hide
+        showAnswer: false
       }
 
     default:

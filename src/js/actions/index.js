@@ -10,7 +10,6 @@ export const checkAnswer = (answer)=> ({
   type: CHECK_ANSWER,
   answer
 });
-export const hideAnswer = (hide=true)=> ({
-  type: HIDE_ANSWER,
-  hide
+export const hideAnswer = ()=> ({
+  type: HIDE_ANSWER
 });

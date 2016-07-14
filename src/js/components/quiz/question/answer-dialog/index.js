@@ -12,7 +12,7 @@ class AnswerDialog extends Component {
     if (isAnswerCorrect) {
       dispatch(getNextQuestion())
     } else {
-      dispatch(hideAnswer(true))
+      dispatch(hideAnswer())
     }
   }
   render() {
