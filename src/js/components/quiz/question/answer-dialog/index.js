@@ -7,7 +7,7 @@ import QUIZ_DATA from '../../../../data'
 
 class AnswerDialog extends Component {
   hideModal() {
-    const {dispatch, currentAnswer, answers, isAnswerCorrect} = this.props;
+    const {dispatch, isAnswerCorrect} = this.props;
     if (isAnswerCorrect) {
       dispatch(getNextQuestion())
     } else {
@@ -16,8 +16,7 @@ class AnswerDialog extends Component {
   }
   render() {
     const {
-      isAnswerCorrect, answerDialogBtnLabel, showAnswer,
-      answerDialogDescription, answerDialogType
+      showAnswer, answerDialogBtnLabel,answerDialogDescription, answerDialogType
     } = this.props;
 
     return (
