@@ -7,8 +7,7 @@ import QUIZ_DATA from '../../../../data'
 
 class AnswerDialog extends Component {
   hideModal() {
-    const {dispatch, currentAnswer, answers} = this.props;
-    const isAnswerCorrect = currentAnswer>=0 && answers[currentAnswer]["is-correct"];
+    const {dispatch, currentAnswer, answers, isAnswerCorrect} = this.props;
     if (isAnswerCorrect) {
       dispatch(getNextQuestion())
     } else {
@@ -17,20 +16,9 @@ class AnswerDialog extends Component {
   }
   render() {
     const {
-      dispatch, question, totalQuestions, currentQuestion, totalAnswers,
-      answers, image, showAnswer, currentAnswer, score, isQuizCompleted
+      isAnswerCorrect, answerDialogBtnLabel, showAnswer,
+      answerDialogDescription, answerDialogType
     } = this.props;
-    const quizCompletedMessage = QUIZ_DATA['end-game-message'].replace('{value}', `${score} /${totalAnswers}`);
-    const isAnswerCorrect = currentAnswer>=0 && answers[currentAnswer]["is-correct"];
-    let answerDialogBtnLabel = isAnswerCorrect ? QUIZ_DATA["next-question-button-label"] : QUIZ_DATA["error-button-label"];
-    let answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
-    let answerDialogType = isAnswerCorrect ? "success" : "danger";
-
-    if (isQuizCompleted) {
-      answerDialogDescription += '<hr><br>'+quizCompletedMessage;
-      answerDialogType = "success";
-      answerDialogBtnLabel = QUIZ_DATA["start-button-label"];
-    }
 
     return (
       <Modal show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
@@ -46,15 +34,11 @@ class AnswerDialog extends Component {
 }
 
 AnswerDialog.propTypes = {
-  question: PropTypes.string.isRequired,
-  answers: PropTypes.array.isRequired,
-  image: PropTypes.string.isRequired,
-  currentAnswer: PropTypes.number.isRequired,
-  currentQuestion: PropTypes.number.isRequired,
-  totalAnswers: PropTypes.number.isRequired,
-  totalQuestions: PropTypes.number.isRequired,
-  isQuizCompleted: PropTypes.bool.isRequired,
   showAnswer: PropTypes.bool.isRequired,
+  isAnswerCorrect: PropTypes.bool.isRequired,
+  answerDialogBtnLabel: PropTypes.string.isRequired,
+  answerDialogDescription: PropTypes.string.isRequired,
+  answerDialogType: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

@@ -18,8 +18,8 @@ describe('Store', () => {
     it('should have defaultQuestion as default value', () => {
       expect(store.getState().quiz).to.be.equal(defaultQuestion)
     });
-    it('should have keys: question, totalAnswers, currentQuestion, totalQuestions, isQuizCompleted, score, answers, image currentAnswer showAnswer', () => {
-      expect(store.getState().quiz).to.have.all.keys('question', 'totalAnswers', 'currentQuestion', 'totalQuestions', 'isQuizCompleted', 'score', 'answers', 'image', 'currentAnswer', 'showAnswer')
+    it('should have keys: question, totalAnswers, currentQuestion, totalQuestions, isQuizCompleted, score, answers, image currentAnswer showAnswer, isAnswerCorrect, answerDialogDescription, answerDialogType, answerDialogBtnLabel', () => {
+      expect(store.getState().quiz).to.have.all.keys('question', 'totalAnswers', 'currentQuestion', 'totalQuestions', 'isQuizCompleted', 'score', 'answers', 'image', 'currentAnswer', 'showAnswer', 'isAnswerCorrect', 'answerDialogDescription', 'answerDialogType', 'answerDialogBtnLabel')
     });
     describe(`Quiz reducer action ${NEXT_QUESTION}`, () => {
 
