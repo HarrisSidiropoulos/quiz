@@ -91,7 +91,7 @@
     "build": "webpack --env.prod -p",
     "build:dev": "webpack --env.dev",
     "start": "node server",
-    "dev": "NODE_ENV=production node server",
+    "prod": "NODE_ENV=production node server",
     "test": "mocha src/js/store/store.test.js  --compilers js:babel-register",
     "test:karma": "karma start",
     "watch:test": "npm t -- --watch",
