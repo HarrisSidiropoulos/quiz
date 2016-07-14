@@ -16,7 +16,7 @@ class AnswerDialog extends Component {
   }
   render() {
     const {
-      isAnswerCorrect, showAnswer, answerDialogBtnLabel,answerDialogDescription, answerDialogType
+      isAnswerCorrect, showAnswer, answerDialogBtnLabel, answerDialogDescription, answerDialogType
     } = this.props;
 
     return (
