@@ -63,7 +63,7 @@ module.exports = env => {
       ifDev(new webpack.optimize.OccurrenceOrderPlugin()),
       ifDev(new webpack.HotModuleReplacementPlugin()),
       ifDev(new webpack.NoErrorsPlugin()),
-      ifDev(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')})),
+      new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(env.prod ?'production':'development')}),
       ifProd(new OfflinePlugin()),
     ]),
   })
