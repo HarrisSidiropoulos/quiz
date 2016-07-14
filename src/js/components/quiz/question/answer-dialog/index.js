@@ -17,14 +17,20 @@ class AnswerDialog extends Component {
   }
   render() {
     const {
-      dispatch, question, totalQuestions, currentQuestion,
-      answers, image, showAnswer, currentAnswer
+      dispatch, question, totalQuestions, currentQuestion, totalAnswers,
+      answers, image, showAnswer, currentAnswer, score, isQuizCompleted
     } = this.props;
-
+    const quizCompletedMessage = QUIZ_DATA['end-game-message'].replace('{value}', `${score} /${totalAnswers}`);
     const isAnswerCorrect = currentAnswer>=0 && answers[currentAnswer]["is-correct"];
-    const answerDialogBtnLabel = isAnswerCorrect ? QUIZ_DATA["next-question-button-label"] : QUIZ_DATA["error-button-label"];
-    const answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
-    const answerDialogType = isAnswerCorrect ? "success" : "danger";
+    let answerDialogBtnLabel = isAnswerCorrect ? QUIZ_DATA["next-question-button-label"] : QUIZ_DATA["error-button-label"];
+    let answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
+    let answerDialogType = isAnswerCorrect ? "success" : "danger";
+
+    if (isQuizCompleted) {
+      answerDialogDescription += '<hr><br>'+quizCompletedMessage;
+      answerDialogType = "success";
+      answerDialogBtnLabel = QUIZ_DATA["start-button-label"];
+    }
 
     return (
       <Modal show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>

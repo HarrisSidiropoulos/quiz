@@ -7,7 +7,7 @@ const QUIZ_DATA = {
   "error-button-label": "Ξαναπροσπάθησε!",
   "next-question-button-label": "Επόμενη Ερώτηση",
   "restart-game-button-label": "Έναρξη",
-  "end-game-message": "Συγχαρητήρια! <br>Έχετε κερδίσει <span class='score-value'>20/20</span> πόντους. <br><br>Μπορείτε να παίξετε ξανά.",
+  "end-game-message": "Συγχαρητήρια! <br>Έχετε κερδίσει <span class='score-value'>{value}</span> πόντους. <br><br>Μπορείτε να παίξετε ξανά.",
   "letters":["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","σ","τ","υ","φ","χ","ψ","ω"],
   "questions":[
     {
