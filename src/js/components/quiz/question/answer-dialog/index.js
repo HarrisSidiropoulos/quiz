@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
-import {getNextQuestion, hideAnswer} from '../../../../actions'
+import {getNextQuestion, hideAnswer} from 'actions'
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
-import QUIZ_DATA from '../../../../data'
+import QUIZ_DATA from 'data'
 
 class AnswerDialog extends Component {
   hideModal() {

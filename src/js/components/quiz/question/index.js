@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
-import {checkAnswer, getNextQuestion, hideAnswer} from '../../../actions'
-import QUIZ_DATA from '../../../data'
-import acc from '../../../utils/acc'
+import {checkAnswer, getNextQuestion, hideAnswer} from 'actions'
+import QUIZ_DATA from 'data'
+import acc from 'utils/acc'
 import AnswerDialog from './answer-dialog'
 
 const images = [

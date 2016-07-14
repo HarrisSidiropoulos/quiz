@@ -12,7 +12,7 @@ module.exports = env => {
   const ifProd = value => specifyProp(env.prod, value)
   const ifDev = value => specifyProp(!env.prod, value)
   const removeEmpty = array => array.filter(i => !!i)
-  return webpackValidator({
+  return {
     entry: env.prod ?
       {
         app: './js/index.js',
@@ -50,6 +50,12 @@ module.exports = env => {
         {test: /\.(png|gif|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
       ]),
     },
+    resolve: {
+      modules: [
+        resolve(__dirname,'src/js'),
+        'node_modules'
+      ]
+    },
     recordsPath: resolve(__dirname, './webpack-records.json'),
     plugins: removeEmpty([
       ifProd(new ExtractTextPlugin('bundle.[name]-[hash].min.css')),
@@ -66,5 +72,5 @@ module.exports = env => {
       new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(env.prod ?'production':'development')}),
       ifProd(new OfflinePlugin()),
     ]),
-  })
+  }
 }

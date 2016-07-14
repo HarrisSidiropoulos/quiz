@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux'
 import Question from './question'
-import QUIZ_DATA from '../../data'
-import acc from '../../utils/acc'
+import QUIZ_DATA from 'data'
+import acc from 'utils/acc'
 
 class Quiz extends Component {
   render() {
