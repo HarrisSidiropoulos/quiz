@@ -8,20 +8,18 @@ class Quiz extends Component {
   render() {
     const {score, totalAnswers} = this.props;
     return (
-      <div className="container">
-        <div className="quiz page active">
-          <header>
-            <div className="col-md-12">
-              <div className="score">
-                <span className="score-name">{acc(QUIZ_DATA['score-label']).toUpperCase()}</span>
-                <span>&nbsp;&nbsp;</span>
-                <span className="score-value">{score} / {totalAnswers}</span>
-              </div>
+      <div className="quiz page active">
+        <header>
+          <div className="col-md-12">
+            <div className="score">
+              <span className="score-name">{acc(QUIZ_DATA['score-label']).toUpperCase()}</span>
+              <span>&nbsp;&nbsp;</span>
+              <span className="score-value">{score} / {totalAnswers}</span>
             </div>
-          </header>
-          <div className="quiz-container">
-            <Question />
           </div>
+        </header>
+        <div className="quiz-container">
+          <Question />
         </div>
       </div>
     );

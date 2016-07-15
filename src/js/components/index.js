@@ -1,14 +1,22 @@
-import React, {Component} from 'react';
-import Home from './home'
+import React from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-class Game extends Component {
-  render() {
-    return (
-      <div className="container">
-        <Home />
-      </div>
-    )
-  }
-}
+const Template = ({ children, location })=> (
+  <div className="container">
+    <div className="pages">
+      <ReactCSSTransitionGroup
+        component="div"
+        transitionName="top"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}>
 
-export default Game
+        {React.cloneElement(children, {
+          key: location.pathname
+        })}
+
+      </ReactCSSTransitionGroup>
+    </div>
+  </div>
+)
+
+export default Template

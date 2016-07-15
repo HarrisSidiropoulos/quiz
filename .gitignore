@@ -4,3 +4,4 @@ dist
 .opt-in
 webpack-records.json
 npm-debug.log
+.idea
