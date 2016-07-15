@@ -223,12 +223,10 @@ header {
 .question-container {
   position: absolute;
   width: 100%;
-  left: 100%;
   padding: 0 15px;
   transition: .5s all ease-out;
   transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   &.active {
-    left: 0;
     display: block;
   }
 }
@@ -377,4 +375,24 @@ header {
   &.top-leave.top-leave-active {
     top: 100%;
   }
+}
+
+&.left-enter {
+  left: 100%;
+  transition: left .5s;
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}
+
+&.left-enter.left-enter-active {
+  left: 0;
+}
+
+&.left-leave {
+  left: 0;
+  transition: left .5s;
+  transition-timing-function: cubic-bezier(.445,.05,.55,.95);
+}
+
+&.left-leave.left-leave-active {
+  left: -100%;
 }

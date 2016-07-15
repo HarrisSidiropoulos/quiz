@@ -3,10 +3,11 @@ import {connect} from 'react-redux'
 import Question from './question'
 import QUIZ_DATA from 'data'
 import acc from 'utils/acc'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Quiz extends Component {
   render() {
-    const {score, totalAnswers} = this.props;
+    const {score, totalAnswers, currentQuestion} = this.props;
     return (
       <div className="quiz page active">
         <header>
@@ -19,7 +20,12 @@ class Quiz extends Component {
           </div>
         </header>
         <div className="quiz-container">
-          <Question />
+          <ReactCSSTransitionGroup
+            transitionName="left"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
+            <Question key={currentQuestion} />
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     );
@@ -28,6 +34,7 @@ class Quiz extends Component {
 Quiz.propTypes = {
   score: PropTypes.number.isRequired,
   totalAnswers: PropTypes.number.isRequired,
+  currentQuestion: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
