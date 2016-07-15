@@ -377,22 +377,30 @@ header {
   }
 }
 
-&.left-enter {
+.top-appear {
+  opacity: 0.01;
+}
+.top-appear.top-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.left-enter {
   left: 100%;
   transition: left .5s;
   transition-timing-function: cubic-bezier(.445,.05,.55,.95);
 }
 
-&.left-enter.left-enter-active {
+.left-enter.left-enter-active {
   left: 0;
 }
 
-&.left-leave {
+.left-leave {
   left: 0;
   transition: left .5s;
   transition-timing-function: cubic-bezier(.445,.05,.55,.95);
 }
 
-&.left-leave.left-leave-active {
+.left-leave.left-leave-active {
   left: -100%;
 }

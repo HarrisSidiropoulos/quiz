@@ -3,11 +3,15 @@ import {connect} from 'react-redux'
 import Question from './question'
 import QUIZ_DATA from 'data'
 import acc from 'utils/acc'
+import AnswerDialog from './question/answer-dialog'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Quiz extends Component {
   render() {
-    const {score, totalAnswers, currentQuestion} = this.props;
+    const {
+      score, totalAnswers, currentQuestion,
+      showAnswer, isAnswerCorrect, currentQuestionScore
+    } = this.props;
     return (
       <div className="quiz page active">
         <header>
@@ -24,8 +28,10 @@ class Quiz extends Component {
             transitionName="left"
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}>
-            <Question key={currentQuestion} />
+            <Question test={currentQuestion} key={currentQuestion} {...this.props} />
           </ReactCSSTransitionGroup>
+          <div className={`current-score ${showAnswer && isAnswerCorrect ? 'visible' : 'hidden'}`}>+{currentQuestionScore}</div>
+          <AnswerDialog {...this.props}/>
         </div>
       </div>
     );
@@ -35,6 +41,9 @@ Quiz.propTypes = {
   score: PropTypes.number.isRequired,
   totalAnswers: PropTypes.number.isRequired,
   currentQuestion: PropTypes.number.isRequired,
+  showAnswer: PropTypes.bool.isRequired,
+  isAnswerCorrect: PropTypes.bool.isRequired,
+  currentQuestionScore: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 

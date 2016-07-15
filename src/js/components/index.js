@@ -7,13 +7,15 @@ const Template = ({ children, location })=> (
       component="div"
       className="pages"
       transitionName="top"
+      transitionAppear={true}
+      transitionAppearTimeout={500}
       transitionEnterTimeout={500}
       transitionLeaveTimeout={500}>
 
       {React.cloneElement(children, {
         key: location.pathname
       })}
-      
+
     </ReactCSSTransitionGroup>
   </div>
 )
