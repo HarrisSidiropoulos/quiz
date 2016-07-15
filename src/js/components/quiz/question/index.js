@@ -16,8 +16,7 @@ const images = [
 class Question extends Component {
   render() {
     const {
-      dispatch, question, totalQuestions, currentQuestion, currentQuestionScore,
-      answers, image, showAnswer, isAnswerCorrect, currentAnswer
+      dispatch, question, totalQuestions, currentQuestion, answers, image
     } = this.props;
 
     const img = parseInt(image.replace('Q', ''), 10) - 1;
@@ -67,7 +66,6 @@ Question.propTypes = {
   isQuizCompleted: PropTypes.bool.isRequired,
   showAnswer: PropTypes.bool.isRequired,
   isAnswerCorrect: PropTypes.bool.isRequired,
-  currentQuestionScore: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
