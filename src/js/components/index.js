@@ -8,7 +8,7 @@ const Template = ({ children, location })=> (
       className="pages"
       transitionName="top"
       transitionAppear={true}
-      transitionAppearTimeout={500}
+      transitionAppearTimeout={100}
       transitionEnterTimeout={500}
       transitionLeaveTimeout={500}>
 
