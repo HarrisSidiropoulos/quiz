@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import configureStore from './configureStore'
-import {defaultQuestion} from '../reducers/quiz'
+import {INITIAL_STATE} from '../reducers/quiz'
 import {NEXT_QUESTION, getNextQuestion, CHECK_ANSWER, checkAnswer, HIDE_ANSWER, hideAnswer} from '../actions'
 
 describe('Store', () => {
@@ -15,8 +15,8 @@ describe('Store', () => {
     it('exists', () => {
       expect(store.getState().quiz).to.exist
     });
-    it('should have defaultQuestion object as default value', () => {
-      expect(store.getState().quiz).to.be.equal(defaultQuestion)
+    it('should have INITIAL_STATE object as default value', () => {
+      expect(store.getState().quiz).to.be.equal(INITIAL_STATE)
     });
     it('should have keys: question, totalAnswers, currentQuestion, totalQuestions, isQuizCompleted, score, answers, image currentAnswer showAnswer, isAnswerCorrect, answerDialogDescription, answerDialogType, answerDialogBtnLabel, currentQuestionScore', () => {
       expect(store.getState().quiz).to.have.all.keys('question', 'totalAnswers', 'currentQuestion', 'totalQuestions', 'isQuizCompleted', 'score', 'answers', 'image', 'currentAnswer', 'showAnswer', 'isAnswerCorrect', 'answerDialogDescription', 'answerDialogType', 'answerDialogBtnLabel', 'currentQuestionScore')
