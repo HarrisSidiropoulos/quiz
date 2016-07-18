@@ -5,3 +5,4 @@ dist
 webpack-records.json
 npm-debug.log
 .idea
+.firebaserc
