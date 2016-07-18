@@ -5,6 +5,9 @@ import QUIZ_DATA from 'data'
 import acc from 'utils/acc'
 import AnswerDialog from './question/answer-dialog'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Sound from 'react-sound'
+
+const successSound = require('./sounds/success.mp3')
 
 class Quiz extends Component {
   render() {
@@ -32,6 +35,8 @@ class Quiz extends Component {
           </ReactCSSTransitionGroup>
           <div className={`current-score ${showAnswer && isAnswerCorrect ? 'visible' : 'hidden'}`}>+{currentQuestionScore}</div>
           <AnswerDialog {...this.props}/>
+          <Sound url={successSound} playStatus={`${showAnswer && isAnswerCorrect ? Sound.status.PLAYING : Sound.status.STOPPED}`}/>
+          <audio src={successSound} preload="true"/>
         </div>
       </div>
     );
