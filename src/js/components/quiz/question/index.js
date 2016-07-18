@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {checkAnswer, getNextQuestion, hideAnswer} from 'actions'
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
+import Popover from 'react-bootstrap/lib/Popover'
 import QUIZ_DATA from 'data'
 import acc from 'utils/acc'
 
@@ -13,7 +15,36 @@ const images = [
   require('./images/Q7.jpg')
 ];
 
+const artists = {
+  'Μιχάλης Κουνέλης':require('./images/kounelis-mixalis.jpg'),
+  'Γιώργος Κουτσουρέλης':require('./images/koytsourelis-giorgos.jpg'),
+  'Κωνσταντίνος Παπαδάκης ή Ναύτης':require('./images/papadakis-kostas.jpg'),
+  'Νικόλαος Τσέγκας':require('./images/tsagas-nikolaos.jpg'),
+  'Νικόλαος Χάρχαλης':require('./images/xarxalis-nikolaos.jpg')
+};
+
 class Question extends Component {
+  renderAnswers(answers) {
+    const { dispatch } = this.props;
+    if (artists[answers[0].label]) {
+      return (
+        answers.map(({description, text, classes, label}, index)=> (
+          <li key={index}>
+            <OverlayTrigger trigger={["hover", "focus"]} rootClose placement="right" overlay={<Popover id={`popover${index}`}><img src={artists[label]} /></Popover>}>
+              <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
+            </OverlayTrigger>
+          </li>
+        ))
+      )
+    }
+    return (
+      answers.map(({description, text, classes}, index)=> (
+        <li key={index}>
+          <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
+        </li>
+      ))
+    )
+  }
   render() {
     const {
       dispatch, question, totalQuestions, currentQuestion, answers, image
@@ -37,15 +68,7 @@ class Question extends Component {
             <span className="question-value">( {currentQuestion} / {totalQuestions} )</span>
           </h4>
           <div className="question">{question}</div>
-          <ul className="answers">
-            {
-              _answers.map(({description, text, classes}, index)=> (
-                <li key={index}>
-                  <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
-                </li>
-              ))
-            }
-          </ul>
+          <ul className="answers">{this.renderAnswers(_answers)}</ul>
         </div>
         <div className="right-panel">
           <div className="image-container">

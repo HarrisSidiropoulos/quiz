@@ -298,6 +298,9 @@ header {
     outline: 5px auto darken($brand-danger, 20%);
   }
 }
+.fade.in.popover {
+  transition-delay: .5s;
+}
 .current-score {
   position: absolute;
   z-index: 1050;
