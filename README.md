@@ -1,2 +1,2 @@
 #mmk-game
-http://polyptychon.github.io/mmk-game/
+https://quiz-19b7b.firebaseapp.com/
