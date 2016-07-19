@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import { browserHistory } from 'react-router'
+import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import Question from './question'
 import {getNextQuestion, hideAnswer, checkAnswer} from 'actions'
