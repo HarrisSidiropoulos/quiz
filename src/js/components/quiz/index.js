@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import { browserHistory } from 'react-router'
 import {connect} from 'react-redux'
 import Question from './question'
 import {getNextQuestion, hideAnswer, checkAnswer} from 'actions'
@@ -12,8 +13,11 @@ const successSound = require('./sounds/success.mp3')
 
 class Quiz extends Component {
   hideModal() {
-    const {dispatch, isAnswerCorrect} = this.props;
+    const {dispatch, isAnswerCorrect, isQuizCompleted} = this.props;
     if (isAnswerCorrect) {
+      if (isQuizCompleted) {
+        browserHistory.push('/')
+      }
       dispatch(getNextQuestion())
     } else {
       dispatch(hideAnswer())
@@ -61,6 +65,7 @@ Quiz.propTypes = {
   currentQuestion: PropTypes.number.isRequired,
   showAnswer: PropTypes.bool.isRequired,
   isAnswerCorrect: PropTypes.bool.isRequired,
+  isQuizCompleted: PropTypes.bool.isRequired,
   currentQuestionScore: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired
 };
