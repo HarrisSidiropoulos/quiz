@@ -101,6 +101,7 @@
     "check-coverage": "istanbul check-coverage --statements 11 --branches 0 --functions 0 --lines 12",
     "validate": "npm-run-all --parallel lint build test --serial check-coverage",
     "lint": "eslint .",
-    "setup": "npm install && npm run validate"
+    "setup": "npm install && npm run validate",
+    "deploy": "npm run build && firebase deploy"
   }
 }
