@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {checkAnswer, getNextQuestion, hideAnswer} from 'actions'
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
 import Popover from 'react-bootstrap/lib/Popover'
 import QUIZ_DATA from 'data'
@@ -25,13 +24,13 @@ const artists = {
 
 class Question extends Component {
   renderAnswers(answers) {
-    const { dispatch } = this.props;
+    const { checkAnswer } = this.props;
     if (artists[answers[0].label]) {
       return (
         answers.map(({description, text, classes, label}, index)=> (
           <li key={index}>
             <OverlayTrigger trigger={["hover", "focus"]} rootClose placement="right" overlay={<Popover id={`popover${index}`}><img src={artists[label]} /></Popover>}>
-              <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
+              <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
             </OverlayTrigger>
           </li>
         ))
@@ -40,14 +39,14 @@ class Question extends Component {
     return (
       answers.map(({description, text, classes}, index)=> (
         <li key={index}>
-          <a className={classes} onClick={()=> dispatch(checkAnswer(index))}>{text}</a>
+          <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
         </li>
       ))
     )
   }
   render() {
     const {
-      dispatch, question, totalQuestions, currentQuestion, answers, image
+      question, totalQuestions, currentQuestion, answers, image
     } = this.props;
 
     const _answers = answers.map((item, index)=> {
@@ -88,7 +87,7 @@ Question.propTypes = {
   isQuizCompleted: PropTypes.bool.isRequired,
   showAnswer: PropTypes.bool.isRequired,
   isAnswerCorrect: PropTypes.bool.isRequired,
-  dispatch: PropTypes.func.isRequired
+  checkAnswer: PropTypes.func.isRequired
 };
 
 export default Question;

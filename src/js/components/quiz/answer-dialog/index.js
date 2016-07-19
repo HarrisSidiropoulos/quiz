@@ -1,29 +1,21 @@
 import React, {Component, PropTypes} from 'react';
-import {getNextQuestion, hideAnswer} from 'actions'
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
 import QUIZ_DATA from 'data'
 
 class AnswerDialog extends Component {
-  hideModal() {
-    const {dispatch, isAnswerCorrect} = this.props;
-    if (isAnswerCorrect) {
-      dispatch(getNextQuestion())
-    } else {
-      dispatch(hideAnswer())
-    }
-  }
   render() {
     const {
-      isAnswerCorrect, showAnswer, answerDialogBtnLabel, answerDialogDescription, answerDialogType
+      isAnswerCorrect, showAnswer, answerDialogBtnLabel,
+      answerDialogDescription, answerDialogType, hideModal
     } = this.props;
 
     return (
-      <Modal className={isAnswerCorrect && 'success'} show={showAnswer} animation={true} onHide={(()=>this.hideModal())}>
+      <Modal className={isAnswerCorrect && 'success'} show={showAnswer} animation={true} onHide={(()=>hideModal())}>
         <Modal.Header closeButton={!isAnswerCorrect} />
         <Modal.Body dangerouslySetInnerHTML={{__html:answerDialogDescription}} />
         <Modal.Footer>
-          <Button bsStyle={answerDialogType} onClick={()=>this.hideModal()}>{answerDialogBtnLabel}</Button>
+          <Button bsStyle={answerDialogType} onClick={()=>hideModal()}>{answerDialogBtnLabel}</Button>
         </Modal.Footer>
       </Modal>
     )
@@ -36,6 +28,7 @@ AnswerDialog.propTypes = {
   answerDialogBtnLabel: PropTypes.string.isRequired,
   answerDialogDescription: PropTypes.string.isRequired,
   answerDialogType: PropTypes.string.isRequired,
+  hideModal: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired
 };
 
