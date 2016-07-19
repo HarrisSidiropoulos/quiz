@@ -1,15 +1,15 @@
-.modal {
-  .modal-dialog.center {
+.modal.center {
+  .modal-dialog {
     position: absolute;
     top: 50%;
     left: 50%;
     @include translate(-50%, -150%);
   }
-  &.fade .modal-dialog.center {
+  &.fade .modal-dialog {
     @include translate(-50%, -150%);
     @include transition-transform(0.3s ease-out);
   }
-  &.in .modal-dialog.center {
+  &.in .modal-dialog {
     @include translate(-50%, -50%);
   }
 }
