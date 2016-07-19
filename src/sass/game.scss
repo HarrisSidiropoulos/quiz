@@ -254,7 +254,7 @@ header {
     }
   }
 }
-.modal-backdrop.fade, .success.fade {
+.modal-backdrop.fade, .success.fade, [aria-hidden="true"] {
   pointer-events: none !important;
 }
 .modal-backdrop.fade.in, .success.fade.in {
