@@ -23,26 +23,18 @@ const artists = {
 };
 
 class Question extends Component {
-  renderAnswers(answers) {
-    const { checkAnswer } = this.props;
-    if (artists[answers[0].label]) {
+  renderAnswerButton({label, text, classes}, index) {
+    const { checkAnswer } = this.props
+    const btn = <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
+    if (artists[label]) {
+      const popover = <Popover id={`popover${index}`}><img src={artists[label]} /></Popover>
       return (
-        answers.map(({description, text, classes, label}, index)=> (
-          <li key={index}>
-            <OverlayTrigger trigger={["hover", "focus"]} rootClose placement="right" overlay={<Popover id={`popover${index}`}><img src={artists[label]} /></Popover>}>
-              <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
-            </OverlayTrigger>
-          </li>
-        ))
+        <OverlayTrigger trigger={["hover", "focus"]} rootClose placement="right" overlay={popover}>
+          { btn }
+        </OverlayTrigger>
       )
     }
-    return (
-      answers.map(({description, text, classes}, index)=> (
-        <li key={index}>
-          <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
-        </li>
-      ))
-    )
+    return btn;
   }
   render() {
     const {
@@ -66,7 +58,13 @@ class Question extends Component {
             <span className="question-value">( {currentQuestion} / {totalQuestions} )</span>
           </h4>
           <div className="question">{question}</div>
-          <ul className="answers">{this.renderAnswers(_answers)}</ul>
+          <ul className="answers">
+          {
+            _answers.map((item, index)=> (
+              <li key={index}>{ this.renderAnswerButton(item, index) }</li>
+            ))
+          }
+          </ul>
         </div>
         <div className="right-panel">
           <div className="image-container">
