@@ -10,6 +10,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Sound from 'react-sound'
 
 const successSound = require('./sounds/success.mp3')
+const scoreLabel = acc(QUIZ_DATA['score-label']).toUpperCase()
 
 class Quiz extends Component {
   render() {
@@ -24,7 +25,7 @@ class Quiz extends Component {
         <header>
           <div className="col-md-12">
             <div className="score">
-              <span className="score-name">{acc(QUIZ_DATA['score-label']).toUpperCase()}</span>
+              <span className="score-name">{scoreLabel}</span>
               <span>&nbsp;&nbsp;</span>
               <span className="score-value">{score} / {totalAnswers}</span>
             </div>

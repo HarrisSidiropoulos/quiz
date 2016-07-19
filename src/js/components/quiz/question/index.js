@@ -22,6 +22,9 @@ const artists = {
   "Νικόλαος Χάρχαλης":require('./images/xarxalis-nikolaos.jpg')
 };
 
+const letters = QUIZ_DATA.letters;
+const questionLabel = acc(QUIZ_DATA['question-label']).toUpperCase()
+
 class Question extends Component {
   renderAnswerButton({label, text, classes}, index) {
     const { checkAnswer } = this.props
@@ -42,7 +45,7 @@ class Question extends Component {
     } = this.props;
 
     const _answers = answers.map((item, index)=> {
-      item.text = QUIZ_DATA.letters[index].toUpperCase() + '. ' +item.label;
+      item.text = letters[index].toUpperCase() + '. ' +item.label;
       if (item.answered && item["is-correct"]) {
         return {...item, classes: 'btn success disabled'}
       } else if (item.answered) {
@@ -54,7 +57,7 @@ class Question extends Component {
       <div className="question-container active">
         <div className="left-panel">
           <h4 className="question-heading">
-            <span className="question-name">{acc(QUIZ_DATA['question-label']).toUpperCase()}</span>&nbsp;
+            <span className="question-name">{questionLabel}</span>&nbsp;
             <span className="question-value">( {currentQuestion} / {totalQuestions} )</span>
           </h4>
           <div className="question">{question}</div>
