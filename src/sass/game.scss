@@ -230,12 +230,10 @@ header {
     display: block;
   }
 }
-.modal-dialog {
-  max-width: 500px;
-  // margin-top: 240px;
-  // @media (max-width: $screen-md-max) {
-  //   margin-top: 200px;
-  // }
+.modal {
+  .modal-dialog {
+    max-width: 500px;
+  }
 }
 .modal-header {
   text-align: left;
