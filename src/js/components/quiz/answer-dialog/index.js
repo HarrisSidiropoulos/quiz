@@ -28,8 +28,7 @@ AnswerDialog.propTypes = {
   answerDialogBtnLabel: PropTypes.string.isRequired,
   answerDialogDescription: PropTypes.string.isRequired,
   answerDialogType: PropTypes.string.isRequired,
-  hideModal: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired
+  hideModal: PropTypes.func.isRequired
 };
 
 export default AnswerDialog;

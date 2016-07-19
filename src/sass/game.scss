@@ -254,6 +254,12 @@ header {
     }
   }
 }
+.modal-backdrop.fade, .success.fade {
+  pointer-events: none !important;
+}
+.modal-backdrop.fade.in, .success.fade.in {
+  pointer-events: all !important;
+}
 .modal.success.fade.in, .success.fade.in .modal-dialog {
   transition-delay: 1s !important;
   -moz-transition-delay: 1s !important;
