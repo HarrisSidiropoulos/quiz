@@ -15,7 +15,7 @@ const Home = ()=> (
       <div className="description">
         <br />
         <br />
-        <div className="btn btn-primary btn-lg">{startButtonLabel}</div>
+        <Link to="quiz" className="btn btn-primary btn-lg">{startButtonLabel}</Link>
       </div>
     </div>
     <div className="right-panel">
