@@ -22,10 +22,19 @@ const artists = {
   "Νικόλαος Χάρχαλης":require('./images/xarxalis-nikolaos.jpg')
 };
 
+const next = (db, key)=> {
+  var keys = Object.keys(db)
+    , i = keys.indexOf(key);
+  return i !== -1 && keys[i + 1] && db[keys[i + 1]];
+};
+
 const letters = QUIZ_DATA.letters;
 const questionLabel = acc(QUIZ_DATA['question-label']).toUpperCase()
 
 class Question extends Component {
+  renderImage(image, display=true) {
+    return image && <img className={display?'img':'hidden'} src={image} alt={image} width="560" height="555" />
+  }
   renderAnswerButton({label, text, classes}, index) {
     const { checkAnswer } = this.props
     const btn = <a className={classes} onClick={()=> checkAnswer(index)}>{text}</a>
@@ -43,7 +52,7 @@ class Question extends Component {
     const {
       question, totalQuestions, currentQuestion, answers, image
     } = this.props;
-
+    const nextImage = next(images, image)
     const _answers = answers.map((item, index)=> {
       item.text = letters[index].toUpperCase() + '. ' +item.label;
       if (item.answered && item["is-correct"]) {
@@ -71,7 +80,8 @@ class Question extends Component {
         </div>
         <div className="right-panel">
           <div className="image-container">
-            <img src={images[image]} alt={image} width="560" height="555" />
+            { this.renderImage(images[image]) }
+            { this.renderImage(nextImage, false) }
           </div>
         </div>
       </div>
