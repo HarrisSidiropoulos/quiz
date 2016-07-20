@@ -91,6 +91,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "webpack --env.prod -p",
+    "postbuild": "sed 's/\\.\\//assets\\//g;s/assets\\/\\.assets//g;' dist/assets/sw.js > dist/sw.js",
     "build:dev": "webpack --env.dev",
     "start": "node server",
     "prod": "NODE_ENV=production node server",

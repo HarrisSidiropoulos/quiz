@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/configureStore'
 import Root from './Root'
 
-// import {install as offlineInstall} from 'offline-plugin/runtime'
-// offlineInstall()
+if (process.env.NODE_ENV==='production') {
+  require('offline-plugin/runtime').install()
+}
 
 const store = configureStore();
 
