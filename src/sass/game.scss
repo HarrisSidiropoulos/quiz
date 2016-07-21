@@ -4,6 +4,11 @@
   width: 0;
   height: 0;
 }
+.container {
+  @media (max-width: $screen-sm-min) {
+    padding: 0;
+  }
+}
 .pages {
   position: relative;
 }
@@ -184,6 +189,7 @@ header {
     transition: all .4s ease-out;
     background: no-repeat -100% -100%;
     text-align: left;
+    white-space: normal;
     &:after {
       content: "";
       display: block;
@@ -239,6 +245,9 @@ header {
 .modal {
   .modal-dialog {
     max-width: 500px;
+    @media (max-width: $screen-sm-min) {
+      margin: 0;
+    }
   }
 }
 .modal-header {
