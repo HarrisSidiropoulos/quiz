@@ -10,7 +10,7 @@ export const getDialogValuesObject = (answers, isAnswerCorrect, currentAnswer, i
   let answerDialogDescription = currentAnswer<0 ? '' : answers[currentAnswer].description;
   let answerDialogType = isAnswerCorrect ? "success" : "danger";
 
-  if (isQuizCompleted) {
+  if (isQuizCompleted && isAnswerCorrect) {
     answerDialogDescription += '<hr><br>'+quizCompletedMessage;
     answerDialogType = "success";
     answerDialogBtnLabel = QUIZ_DATA["start-button-label"];
