@@ -1,10 +1,10 @@
+/* eslint indent: */
 const {resolve} = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const webpackValidator = require('webpack-validator')
 const OfflinePlugin = require('offline-plugin')
-const package = require('./package.json')
+const packageJSON = require('./package.json')
 
 module.exports = env => {
   env = env || {};
@@ -15,8 +15,7 @@ module.exports = env => {
   const assetsPath = env.prod?'/assets/':''
   const indexPath = env.prod?'../':''
   return {
-    entry:
-      {
+    entry:{
         app: removeEmpty([
           ifDev('webpack-hot-middleware/client?reload=true'),
           './js/index.js'
@@ -47,7 +46,7 @@ module.exports = env => {
         {test: /\.(jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=15000"},
         {test: /\.(png|gif|mp3)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"},
         ifProd({ test: /\.js$/, loader: "strip-loader?strip[]=console.log" })
-      ]),
+      ])
     },
     resolve: {
       modules: [
@@ -61,8 +60,8 @@ module.exports = env => {
       new HtmlWebpackPlugin({
         filename: `${indexPath}index.html`,
         favicon: './images/favicon.png',
-        title: package.name,
-        description: package.description,
+        title: packageJSON.name,
+        description: packageJSON.description,
         template: './index.jade',
         NODE_ENV: env.prod ? 'production' : 'development',
         inject: !env.prod
@@ -71,7 +70,7 @@ module.exports = env => {
       ifDev(new webpack.HotModuleReplacementPlugin()),
       ifDev(new webpack.NoErrorsPlugin()),
       new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(env.prod ?'production':'development')}),
-      ifProd(new OfflinePlugin({ServiceWorker:{events:true}})),
-    ]),
+      ifProd(new OfflinePlugin({ServiceWorker:{events:true}}))
+    ])
   }
 }

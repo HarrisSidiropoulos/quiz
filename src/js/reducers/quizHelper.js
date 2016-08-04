@@ -18,7 +18,7 @@ export const getDialogValuesObject = (answers, isAnswerCorrect, currentAnswer, i
   return {
     answerDialogDescription,
     answerDialogType,
-    answerDialogBtnLabel,
+    answerDialogBtnLabel
   }
 }
 export const totalAnswers = QUIZ_DATA.questions.reduce((prev, next)=> {

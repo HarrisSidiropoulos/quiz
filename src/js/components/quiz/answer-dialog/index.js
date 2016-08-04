@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Modal from 'react-bootstrap/lib/Modal'
 import Button from 'react-bootstrap/lib/Button'
-import QUIZ_DATA from 'data'
 
 class AnswerDialog extends Component {
   render() {

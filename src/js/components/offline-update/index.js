@@ -1,5 +1,5 @@
+/* eslint no-console:  */
 import React, {Component} from 'react'
-import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 require('./styles.scss')
 
 class OfflineUpdate extends Component {

@@ -1,3 +1,4 @@
+/* eslint indent: */
 import {NEXT_QUESTION, CHECK_ANSWER, HIDE_ANSWER} from '../actions'
 import QUIZ_DATA from '../data'
 import {calculateScore, getDialogValuesObject, totalAnswers} from './quizHelper'
@@ -25,7 +26,7 @@ export const INITIAL_STATE = {
 
 export default function Quiz(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case NEXT_QUESTION:
+    case NEXT_QUESTION: {
       if (state.currentQuestion>=state.totalQuestions) {
         state.currentQuestion = 0;
         state.score = 0;
@@ -42,8 +43,8 @@ export default function Quiz(state = INITIAL_STATE, action) {
         image:QUIZ_DATA.questions[state.currentQuestion].image,
         isQuizCompleted: QUIZ_DATA.questions.length<=state.currentQuestion + 1
       };
-
-    case CHECK_ANSWER:
+    }
+    case CHECK_ANSWER: {
       let answers = QUIZ_DATA.questions[state.currentQuestion-1].answers.map((item, index)=> (
         index===action.answer ? {...item, answered: true} : state.answers[index]
       ))
@@ -59,13 +60,13 @@ export default function Quiz(state = INITIAL_STATE, action) {
         currentQuestionScore: score,
         ...getDialogValuesObject(answers, isAnswerCorrect, action.answer, state.isQuizCompleted, state.score + score)
       }
-
-    case HIDE_ANSWER:
+    }
+    case HIDE_ANSWER: {
       return {
         ...state,
         showAnswer: false
       }
-
+    }
     default:
       return state
   }

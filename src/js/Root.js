@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import Home from './components/home'
 import Quiz from './components/quiz'
 import Template from './components'
-import {Router, Route, IndexRoute, IndexRedirect, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 const Root = ({store})=> (
   <Provider store={store}>

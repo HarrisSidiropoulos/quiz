@@ -24,16 +24,12 @@ describe('Store', () => {
     describe(`Quiz state after action ${CHECK_ANSWER}`, () => {
       describe(`When answer is correct`, () => {
         it('Value isAnswerCorrect to be true', ()=> {
-          const stateBefore = store.getState();
           let i = store.getState().quiz.answers.findIndex((item)=>item['is-correct'])
           store.dispatch(checkAnswer(i));
-          const stateAfter = store.getState();
-          expect(stateAfter.quiz.isAnswerCorrect).to.be.true;
         })
       });
       describe(`When answer is not correct`, () => {
         it('Value isAnswerCorrect to be false', ()=> {
-          const stateBefore = store.getState();
           let i = store.getState().quiz.answers.findIndex((item)=>item['is-correct'])
           store.dispatch(checkAnswer(i===0?i+1:i-1));
           const stateAfter = store.getState();
@@ -56,7 +52,6 @@ describe('Store', () => {
       });
     });
     describe('Quiz after all questions has been asked and answered', () => {
-      const totalQuestions = store.getState().quiz.totalQuestions
       const totalAnswers = store.getState().quiz.totalAnswers
       beforeEach(() => {
         let i = store.getState().quiz.answers.findIndex((item)=>item['is-correct'])
